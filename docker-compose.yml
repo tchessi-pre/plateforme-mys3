@@ -19,7 +19,7 @@ services:
     volumes:
       - ./app:/app  # Montez le répertoire local `app` dans le conteneur
     working_dir: /app  # Définit le répertoire de travail dans le conteneur
-    command: go run main.go  # Commande pour démarrer l'application Go
+    command: sh -c "go mod tidy && go run main.go"  # Assurez-vous que les modules Go sont installés avant de démarrer l'application
     ports:
       - "8080:8080"
     environment:
