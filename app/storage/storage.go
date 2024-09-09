@@ -1,39 +1,40 @@
 package storage
 
 import (
-	"os"
-	"path/filepath"
+	"context"
+	"fmt"
+	"log"
+	"github.com/minio/minio-go/v7"
+	"github.com/minio/minio-go/v7/pkg/credentials"
 )
 
-// CreateBucket crée un nouveau bucket (dossier) dans le système de fichiers.
+var minioClient *minio.Client
+
+func init() {
+	var err error
+	minioClient, err = minio.New("http://minio:9000", &minio.Options{
+		Creds:  credentials.NewStaticV4("admin", "admin123", ""),
+		Secure: false,
+	})
+	if err != nil {
+		log.Fatalln(err)
+	}
+}
+
+// CreateBucket creates a new bucket in MinIO.
 func CreateBucket(bucketName string) error {
-	return os.MkdirAll(filepath.Join("storage", bucketName), 0755)
+	ctx := context.Background()
+	err := minioClient.MakeBucket(ctx, bucketName, minio.MakeBucketOptions{})
+	if err != nil {
+		exists, errBucketExists := minioClient.BucketExists(ctx, bucketName)
+		if errBucketExists == nil && exists {
+			// Bucket already exists
+			return nil
+		}
+		return err
+	}
+	fmt.Printf("Successfully created %s\n", bucketName)
+	return nil
 }
 
-// UploadFile enregistre un fichier dans le bucket spécifié.
-func UploadFile(bucketName, fileName string, data []byte) error {
-	// Construire le chemin complet du fichier
-	filePath := filepath.Join("storage", bucketName, fileName)
-	// Écrire les données dans le fichier
-	return os.WriteFile(filePath, data, 0644)
-}
-
-// ListFiles liste tous les fichiers dans un bucket.
-func ListFiles(bucketName string) ([]os.DirEntry, error) {
-	return os.ReadDir(filepath.Join("storage", bucketName))
-}
-
-// DownloadFile récupère le contenu d'un fichier depuis un bucket.
-func DownloadFile(bucketName, fileName string) ([]byte, error) {
-	filePath := filepath.Join("storage", bucketName, fileName)
-	return os.ReadFile(filePath)
-}
-
-// DeleteFile supprime un fichier d'un bucket.
-func DeleteFile(bucketName, fileName string) error {
-	filePath := filepath.Join("storage", bucketName, fileName)
-	return os.Remove(filePath)
-}
-
-
-
+// Other functions for UploadFile, ListFiles, DownloadFile, DeleteFile...

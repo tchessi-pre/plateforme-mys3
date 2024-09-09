@@ -27,10 +27,10 @@
 - [📂 Repository Structure](#-repository-structure)
 - [🧩 Modules](#-modules)
 - [🚀 Getting Started](#-getting-started)
-    - [🔖 Prerequisites](#-prerequisites)
-    - [📦 Installation](#-installation)
-    - [🤖 Usage](#-usage)
-    - [🧪 Tests](#-tests)
+  - [🔖 Prerequisites](#-prerequisites)
+  - [📦 Installation](#-installation)
+  - [🤖 Usage](#-usage)
+  - [🧪 Tests](#-tests)
 - [📌 Project Roadmap](#-project-roadmap)
 - [🤝 Contributing](#-contributing)
 - [🎗 License](#-license)
@@ -71,47 +71,47 @@
 
 <details closed><summary>.</summary>
 
-| File | Summary |
-| --- | --- |
+| File                                                                                              | Summary                   |
+| ------------------------------------------------------------------------------------------------- | ------------------------- |
 | [docker-compose.yml](https://github.com/tchessi-pre/plateforme-mys3/blob/main/docker-compose.yml) | <code>❯ REPLACE-ME</code> |
 
 </details>
 
 <details closed><summary>app</summary>
 
-| File | Summary |
-| --- | --- |
-| [go.sum](https://github.com/tchessi-pre/plateforme-mys3/blob/main/app/go.sum) | <code>❯ REPLACE-ME</code> |
-| [go.mod](https://github.com/tchessi-pre/plateforme-mys3/blob/main/app/go.mod) | <code>❯ REPLACE-ME</code> |
+| File                                                                            | Summary                   |
+| ------------------------------------------------------------------------------- | ------------------------- |
+| [go.sum](https://github.com/tchessi-pre/plateforme-mys3/blob/main/app/go.sum)   | <code>❯ REPLACE-ME</code> |
+| [go.mod](https://github.com/tchessi-pre/plateforme-mys3/blob/main/app/go.mod)   | <code>❯ REPLACE-ME</code> |
 | [main.go](https://github.com/tchessi-pre/plateforme-mys3/blob/main/app/main.go) | <code>❯ REPLACE-ME</code> |
 
 </details>
 
 <details closed><summary>app.handlers</summary>
 
-| File | Summary |
-| --- | --- |
+| File                                                                                                       | Summary                   |
+| ---------------------------------------------------------------------------------------------------------- | ------------------------- |
 | [create_bucket.go](https://github.com/tchessi-pre/plateforme-mys3/blob/main/app/handlers/create_bucket.go) | <code>❯ REPLACE-ME</code> |
-| [delete_file.go](https://github.com/tchessi-pre/plateforme-mys3/blob/main/app/handlers/delete_file.go) | <code>❯ REPLACE-ME</code> |
+| [delete_file.go](https://github.com/tchessi-pre/plateforme-mys3/blob/main/app/handlers/delete_file.go)     | <code>❯ REPLACE-ME</code> |
 | [download_file.go](https://github.com/tchessi-pre/plateforme-mys3/blob/main/app/handlers/download_file.go) | <code>❯ REPLACE-ME</code> |
-| [utils.go](https://github.com/tchessi-pre/plateforme-mys3/blob/main/app/handlers/utils.go) | <code>❯ REPLACE-ME</code> |
-| [upload_file.go](https://github.com/tchessi-pre/plateforme-mys3/blob/main/app/handlers/upload_file.go) | <code>❯ REPLACE-ME</code> |
-| [list_files.go](https://github.com/tchessi-pre/plateforme-mys3/blob/main/app/handlers/list_files.go) | <code>❯ REPLACE-ME</code> |
+| [utils.go](https://github.com/tchessi-pre/plateforme-mys3/blob/main/app/handlers/utils.go)                 | <code>❯ REPLACE-ME</code> |
+| [upload_file.go](https://github.com/tchessi-pre/plateforme-mys3/blob/main/app/handlers/upload_file.go)     | <code>❯ REPLACE-ME</code> |
+| [list_files.go](https://github.com/tchessi-pre/plateforme-mys3/blob/main/app/handlers/list_files.go)       | <code>❯ REPLACE-ME</code> |
 
 </details>
 
 <details closed><summary>app.storage</summary>
 
-| File | Summary |
-| --- | --- |
+| File                                                                                          | Summary                   |
+| --------------------------------------------------------------------------------------------- | ------------------------- |
 | [storage.go](https://github.com/tchessi-pre/plateforme-mys3/blob/main/app/storage/storage.go) | <code>❯ REPLACE-ME</code> |
 
 </details>
 
 <details closed><summary>app.storage.myBucket3</summary>
 
-| File | Summary |
-| --- | --- |
+| File                                                                                                | Summary                   |
+| --------------------------------------------------------------------------------------------------- | ------------------------- |
 | [myObject](https://github.com/tchessi-pre/plateforme-mys3/blob/main/app/storage/myBucket3/myObject) | <code>❯ REPLACE-ME</code> |
 
 </details>
@@ -129,16 +129,19 @@
 Build the project from source:
 
 1. Clone the plateforme-mys3 repository:
+
 ```sh
 ❯ git clone https://github.com/tchessi-pre/plateforme-mys3
 ```
 
 2. Navigate to the project directory:
+
 ```sh
 ❯ cd plateforme-mys3
 ```
 
 3. Install the required dependencies:
+
 ```sh
 ❯ go build -o myapp
 ```
@@ -163,7 +166,7 @@ Execute the test suite using the following command:
 
 ## 📌 Project Roadmap
 
-- [X] **`Task 1`**: <strike>Implement feature one.</strike>
+- [x] **`Task 1`**: <strike>Implement feature one.</strike>
 - [ ] **`Task 2`**: Implement feature two.
 - [ ] **`Task 3`**: Implement feature three.
 

@@ -15,10 +15,10 @@ func loadMinioClient() (*minio.Client, error) {
 	accessKey := os.Getenv("MINIO_ACCESS_KEY")
 	secretKey := os.Getenv("MINIO_SECRET_KEY")
 
+	// Afficher les variables pour le débogage
 	fmt.Println("MINIO_ENDPOINT:", minioEndpoint)
-fmt.Println("MINIO_ACCESS_KEY:", accessKey)
-fmt.Println("MINIO_SECRET_KEY:", secretKey)
-
+	fmt.Println("MINIO_ACCESS_KEY:", accessKey)
+	fmt.Println("MINIO_SECRET_KEY:", secretKey)
 
 	// Vérification que toutes les variables d'environnement sont définies
 	if minioEndpoint == "" || accessKey == "" || secretKey == "" {
@@ -36,4 +36,3 @@ fmt.Println("MINIO_SECRET_KEY:", secretKey)
 
 	return minioClient, nil
 }
-
