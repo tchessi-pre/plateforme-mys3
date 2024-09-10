@@ -2,7 +2,7 @@
 
 # `PLATEFORME-MYS3`
 
-#### <code>❯ REPLACE-ME</code>
+#### <code>❯ Une plateforme simplifiée compatible avec S3 pour la gestion des fichiers</code>
 
 <p align="left">
 	<img src="https://img.shields.io/github/license/tchessi-pre/plateforme-mys3?style=flat&logo=opensourceinitiative&logoColor=white&color=0080ff" alt="license">
@@ -11,7 +11,7 @@
 	<img src="https://img.shields.io/github/languages/count/tchessi-pre/plateforme-mys3?style=flat&color=0080ff" alt="repo-language-count">
 </p>
 <p align="left">
-		<em>Built with the tools and technologies:</em>
+		<em>Construit avec les outils et technologies suivants :</em>
 </p>
 <p align="center">
 	<img src="https://img.shields.io/badge/YAML-CB171E.svg?style=flat&logo=YAML&logoColor=white" alt="YAML">
@@ -20,37 +20,41 @@
 
 <br>
 
-##### 🔗 Table of Contents
+##### 🔗 Table des Matières
 
-- [📍 Overview](#-overview)
-- [👾 Features](#-features)
-- [📂 Repository Structure](#-repository-structure)
+- [📍 Vue d'ensemble](#-vue-densemble)
+- [👾 Fonctionnalités](#-fonctionnalités)
+- [📂 Structure du dépôt](#-structure-du-dépôt)
 - [🧩 Modules](#-modules)
-- [🚀 Getting Started](#-getting-started)
-  - [🔖 Prerequisites](#-prerequisites)
+- [🚀 Pour commencer](#-pour-commencer)
+  - [🔖 Prérequis](#-prérequis)
   - [📦 Installation](#-installation)
-  - [🤖 Usage](#-usage)
+  - [🤖 Utilisation](#-utilisation)
   - [🧪 Tests](#-tests)
-- [📌 Project Roadmap](#-project-roadmap)
-- [🤝 Contributing](#-contributing)
-- [🎗 License](#-license)
-- [🙌 Acknowledgments](#-acknowledgments)
+  - [📝 Gestion des buckets et des fichiers avec `mc`](#-gestion-des-buckets-et-des-fichiers-avec-mc)
+- [📌 Roadmap du projet](#-roadmap-du-projet)
+- [🤝 Contribuer](#-contribuer)
+- [🎗 Licence](#-licence)
+- [🙌 Remerciements](#-remerciements)
 
 ---
 
-## 📍 Overview
+## 📍 Vue d'ensemble
 
-<code>❯ REPLACE-ME</code>
-
----
-
-## 👾 Features
-
-<code>❯ REPLACE-ME</code>
+<code>❯ Cette plateforme fournit un système de stockage de fichiers compatible S3, développé avec Go et MinIO.</code>
 
 ---
 
-## 📂 Repository Structure
+## 👾 Fonctionnalités
+
+- Créer et gérer des buckets compatibles S3.
+- Upload, téléchargement et suppression de fichiers.
+- Support de stockage local en parallèle avec MinIO.
+- API REST simple pour les opérations sur les fichiers.
+
+---
+
+## 📂 Structure du dépôt
 
 ```sh
 └── plateforme-mys3/
@@ -59,7 +63,7 @@
     │   ├── go.sum
     │   ├── handlers
     │   ├── main.go
-    │   ├── storage
+    │   ├── storage (Bucket local)
     │   └── tests
     ├── docker-compose.yml
     └── readme.md
@@ -71,40 +75,48 @@
 
 <details closed><summary>.</summary>
 
-| File                                                                                              | Summary                   |
-| ------------------------------------------------------------------------------------------------- | ------------------------- |
-| [docker-compose.yml](https://github.com/tchessi-pre/plateforme-mys3/blob/main/docker-compose.yml) | <code>❯ REPLACE-ME</code> |
+| Fichier                  | Résumé                               |
+|--------------------------|--------------------------------------|
+| `docker-compose.yml`      | Configuration Docker pour MinIO et Go|
 
 </details>
 
 <details closed><summary>app</summary>
 
-| File                                                                            | Summary                   |
-| ------------------------------------------------------------------------------- | ------------------------- |
-| [go.sum](https://github.com/tchessi-pre/plateforme-mys3/blob/main/app/go.sum)   | <code>❯ REPLACE-ME</code> |
-| [go.mod](https://github.com/tchessi-pre/plateforme-mys3/blob/main/app/go.mod)   | <code>❯ REPLACE-ME</code> |
-| [main.go](https://github.com/tchessi-pre/plateforme-mys3/blob/main/app/main.go) | <code>❯ REPLACE-ME</code> |
+| Fichier       | Résumé                                     |
+|---------------|--------------------------------------------|
+| `go.sum`      | Gestion des dépendances                    |
+| `go.mod`      | Suivi des versions des dépendances         |
+| `main.go`     | Point d'entrée principal de l'application Go|
 
 </details>
 
 <details closed><summary>app.handlers</summary>
 
-| File                                                                                                       | Summary                   |
-| ---------------------------------------------------------------------------------------------------------- | ------------------------- |
-| [create_bucket.go](https://github.com/tchessi-pre/plateforme-mys3/blob/main/app/handlers/create_bucket.go) | <code>❯ REPLACE-ME</code> |
-| [delete_file.go](https://github.com/tchessi-pre/plateforme-mys3/blob/main/app/handlers/delete_file.go)     | <code>❯ REPLACE-ME</code> |
-| [download_file.go](https://github.com/tchessi-pre/plateforme-mys3/blob/main/app/handlers/download_file.go) | <code>❯ REPLACE-ME</code> |
-| [utils.go](https://github.com/tchessi-pre/plateforme-mys3/blob/main/app/handlers/utils.go)                 | <code>❯ REPLACE-ME</code> |
-| [upload_file.go](https://github.com/tchessi-pre/plateforme-mys3/blob/main/app/handlers/upload_file.go)     | <code>❯ REPLACE-ME</code> |
-| [list_files.go](https://github.com/tchessi-pre/plateforme-mys3/blob/main/app/handlers/list_files.go)       | <code>❯ REPLACE-ME</code> |
+| Fichier                  | Résumé                                |
+|--------------------------|---------------------------------------|
+| `create_bucket.go`        | Point d'API pour la création de buckets|
+| `delete_file.go`          | API pour la suppression de fichiers   |
+| `download_file.go`        | API pour le téléchargement de fichiers|
+| `upload_file.go`          | API pour l'upload de fichiers         |
+| `list_files.go`           | API pour lister les fichiers dans un bucket|
 
 </details>
 
 <details closed><summary>app.storage</summary>
 
-| File                                                                                          | Summary                   |
-| --------------------------------------------------------------------------------------------- | ------------------------- |
-| [storage.go](https://github.com/tchessi-pre/plateforme-mys3/blob/main/app/storage/storage.go) | <code>❯ REPLACE-ME</code> |
+| Fichier        | Résumé                    |
+|----------------|---------------------------|
+| `storage.go`   | Gestion du stockage local  |
+
+</details>
+
+<details closed><summary>app.storage</summary>
+
+| File                                                                                                                                                                                                          | Summary                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| [storage.go](https://github.com/tchessi-pre/plateforme-mys3/blob/main/app/storage/storage.go)                                                                                                                 | <code>❯ Documentation détaillée pour la gestion de buckets et de fichiers dans MinIO à l'aide de mc (MinIO Client) et un serveur Go custom |
+| Cette documentation vous guidera à travers les différentes étapes pour gérer des buckets et des fichiers sur MinIO avec l'outil mc ainsi qu'un serveur Go qui utilise MinIO comme backend de stockage.</code> |
 
 </details>
 
@@ -122,7 +134,7 @@
 
 ### 🔖 Prerequisites
 
-**Go**: `version x.y.z`
+**Go**: `version latest`
 
 ### 📦 Installation
 

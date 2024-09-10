@@ -8,7 +8,7 @@ import (
 
 func main() {
 	// Routes pour la gestion des buckets
-	http.HandleFunc("/create-bucket", handlers.CreateBucket) // Créer un bucket
+	http.HandleFunc("/", handlers.CreateBucket) // Créer un bucket
 	http.HandleFunc("/list-files", handlers.ListFiles)       // Lister les fichiers d'un bucket
 
 	// Routes pour la gestion des fichiers dans les buckets
