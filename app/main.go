@@ -15,6 +15,7 @@ func main() {
 	http.HandleFunc("/upload-file", handlers.UploadFile)     // Uploader un fichier
 	http.HandleFunc("/download-file", handlers.DownloadFile) // Télécharger un fichier
 	http.HandleFunc("/delete-file", handlers.DeleteFile)     // Supprimer un fichier
+	http.HandleFunc("/delete-bucket", handlers.DeleteBucket)     // Supprimer un fichier
 
 	// Gérer les objets dans un bucket avec PutObject (Upload d'objets dans un bucket via une URL)
 	http.HandleFunc("/put-object/", handlers.PutObject)

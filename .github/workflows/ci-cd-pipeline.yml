@@ -1,0 +1,83 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout du code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Configuration de Go
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v4
+        with:
+          go-version: 1.19
+
+      # Installation des dépendances
+      - name: Install dependencies
+        run: go mod tidy
+
+      # Lancer les tests
+      - name: Run tests
+        run: go test ./...
+
+      # Build de l'image Docker
+      - name: Build Docker image
+        run: docker build -t mycli:latest .
+
+  push-docker-image:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/')
+    
+    steps:
+      # Checkout du code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Connexion à Docker Hub
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # Build de l'image Docker avec un tag unique
+      - name: Build Docker image
+        run: |
+          IMAGE_TAG="${{ github.sha }}"
+          docker build -t mycli:$IMAGE_TAG .
+
+      # Push de l'image Docker vers Docker Hub
+      - name: Push Docker image
+        run: |
+          IMAGE_TAG="${{ github.sha }}"
+          docker tag mycli:$IMAGE_TAG ${{ secrets.DOCKERHUB_USERNAME }}/mycli:$IMAGE_TAG
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/mycli:$IMAGE_TAG
+
+  notify:
+    needs: [build-and-test, push-docker-image]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send Google Chat Notification
+        run: |
+          if [ "${{ job.status }}" == "success" ]; then
+            MESSAGE="CI/CD Pipeline Success: Build and push completed successfully!"
+          else
+            MESSAGE="CI/CD Pipeline Failure: Something went wrong!"
+          fi
+          curl -X POST -H "Content-Type: application/json" \
+            -d "{\"text\": \"$MESSAGE\"}" \
+            ${{ secrets.GOOGLE_CHAT_WEBHOOK }}
+
